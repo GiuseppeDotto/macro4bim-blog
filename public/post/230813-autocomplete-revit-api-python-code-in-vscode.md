@@ -1,10 +1,10 @@
 <!-- {
-"createdAt": "Aug 7, 1993",
-"title": "Template",
+"createdAt": "Aug 13, 2023",
+"title": "autocomplete Revit API Python code in VSCode",
 "tags": ["Dynamo", "Revit API", "Python"],
-"votes": 0,
-"views": 0,
-"published": false
+"votes": 1,
+"views": 603,
+"published": true
 } -->
 
 # Autocomplete Revit API Python code in VSCode

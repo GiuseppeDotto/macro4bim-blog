@@ -1,10 +1,10 @@
 <!-- {
-"createdAt": "Aug 7, 1993",
-"title": "Template",
-"tags": ["Dynamo", "Revit API", "Python"],
+"createdAt": "Oct 28, 2023",
+"title": "pyM4B issue fixed",
+"tags": ["pyRevit", "pyM4B", "Python"],
 "votes": 0,
-"views": 0,
-"published": false
+"views": 121,
+"published": true
 } -->
 
 # pyM4B issue fixed

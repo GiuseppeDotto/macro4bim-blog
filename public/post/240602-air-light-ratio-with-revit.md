@@ -1,10 +1,10 @@
 <!-- {
-"createdAt": "Aug 7, 1993",
-"title": "first Post",
-"tags": ["Dynamo", "Revit API", "Python"],
-"votes": 0,
-"views": 0,
-"published": false
+"createdAt": "Jun 2, 2024",
+"title": "Air/Light Ratio with Revit",
+"tags": ["pyRevit/pyM4B", "Python", "BIM-Specialist"],
+"votes": 1,
+"views": 126,
+"published": true
 } -->
 
 # Air/Light Ratio with Revit

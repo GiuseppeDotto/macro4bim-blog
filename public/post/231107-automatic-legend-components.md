@@ -1,10 +1,10 @@
 <!-- {
-"createdAt": "Aug 7, 1993",
-"title": "Template",
-"tags": ["Dynamo", "Revit API", "Python"],
-"votes": 0,
-"views": 0,
-"published": false
+"createdAt": "Nov 7, 2023",
+"Title": "Automatic Legend Components",
+"tags": ["Materia tags", "Revit Family", "Dimensions"],
+"votes": 4,
+"views": 622,
+"published": true
 } -->
 
 # Automatic Legend Components

@@ -1,10 +1,10 @@
 <!-- {
-"createdAt": "Aug 7, 1993",
-"title": "Template",
+"createdAt": "Jul 9, 2023",
+"title": "What the Revit Version?",
 "tags": ["Dynamo", "Revit API", "Python"],
-"votes": 0,
-"views": 0,
-"published": false
+"votes": 2,
+"views": 286,
+"published": true
 } -->
 
 # What the Revit Version?
@@ -39,7 +39,7 @@ Here is a short demonstrative video:
 
 > :::image-small
 >
-> ![](https://media4.giphy.com/media/l2JI84kB30Gypc9ig/giphy.mp4?cid=e2a3cbdecsjpp36abbzswy1n2o3je2ublepfxl3z2abhaa4k&ep=v1_gifs_search&rid=giphy.gif)
+> ![](https://media4.giphy.com/media/l2JI84kB30Gypc9ig/giphy.gif)
 
 Nice but... slow. Especially if the file is big and/or if the files are many! Our tool automates this process and does it for multiple files at once.
 
