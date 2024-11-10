@@ -52,17 +52,5 @@ footer {
       color: white;
       text-align: right;
     }
-    button {
-      background-color: #333;
-      outline: none;
-      border: 1px solid hsl(0, 0%, 50%);
-      color: hsl(0, 0%, 50%);
-      transition: translate 250ms ease-in-out;
-    }
-    button:hover {
-      translate: 0 -0.2rem;
-      background-color: #404040;
-      color: white;
-    }
   }
 }

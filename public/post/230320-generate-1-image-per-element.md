@@ -23,7 +23,7 @@ Have you ever wanted to be the photographer of the families and types in your pr
 
 At first glance, here are a couple of reasons why you would like to do so:
 
-1. Creating a <span style="color:green">**_pictionary_**</span> of the families in your office Revit library. This would help all the users to quickly recognize if the component they are looking for is or is not in the library.
+1. Creating a <i style="color:green">pictionary</i> of the families in your office Revit library. This would help all the users to quickly recognize if the component they are looking for is or is not in the library.
 2. Integrate your schedules with some dedicated images that could help the person that reads the data to better correlate with the modeled elements. For example, what about having a <span style="color:green">set of images named exactly as the type mark </span> of some specific families??
 
 While the first example/reason is serving an office-based need, the second is clearly project-based and definitely **versatile**... We hope it is clear to everyone why we develop such a function!!
