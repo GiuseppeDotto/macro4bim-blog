@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import HeaderComponent from "./components/common/Header/Header";
 import Home from "./components/pages/Home";
@@ -7,8 +7,10 @@ import Footer from "./components/common/Footer/Footer";
 import BlogPost from "./components/common/Blog/BlogPost";
 import PyM4B from "./components/pages/pyM4B";
 import LoginButton from "./components/common/Auth/LoginButton";
+import AuthContext, { AuthContextProvider } from "./components/common/Auth/authContext";
 
 function App() {
+  // load posts
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
@@ -24,10 +26,16 @@ function App() {
   }, []);
   let successFetch = typeof posts == "object" && posts.length > 0;
 
+  // check user authentication
+  // const { user, login } = useContext(AuthContext);
+  // const val = useContext(AuthContext);
+  // console.log(val);
+
   return (
-    <>
+    <AuthContextProvider>
       <HeaderComponent />
       <LoginButton />
+      {/* <LoginButton login={login} /> */}
       <div
         className="main"
         style={{
@@ -55,7 +63,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
-    </>
+    </AuthContextProvider>
   );
 }
 

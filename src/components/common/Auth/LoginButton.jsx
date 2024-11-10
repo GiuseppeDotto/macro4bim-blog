@@ -1,6 +1,7 @@
 import "./auth.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import LoginPopup from "./LoginPopup";
+import AuthContext from "./authContext";
 
 const personIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -23,6 +24,9 @@ const personIcon = (
 );
 
 export default function LoginButton() {
+  const { user, login } = useContext(AuthContext);
+  console.log(user);
+
   const [username, setUsername] = useState("Login");
   const [showPopup, setShowPopup] = useState(false);
   // TO-DO => REPLACE USERNAME VALUE
@@ -33,7 +37,7 @@ export default function LoginButton() {
 
   return (
     <>
-      <button id="login-button" onClick={() => setShowPopup(!showPopup)}>
+      <button id="login-button" onClick={login}>
         {personIcon}
         {username}
       </button>
