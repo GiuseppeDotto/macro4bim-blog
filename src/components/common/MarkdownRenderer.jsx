@@ -25,8 +25,6 @@ const copyIcon = (
 export default function MarkdownRenderer({ content }) {
   const [stateMsg, SetStateMsg] = useState("");
 
-  let codeRepetition = 0;
-
   return (
     <div className="md-renderer">
       <Markdown
@@ -35,9 +33,9 @@ export default function MarkdownRenderer({ content }) {
         components={{
           code({ inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || "");
-            codeRepetition = Math.random().toString(16).slice(2);
+            let codeRepetition = Math.random().toString(16).slice(2);
             return !inline && match ? (
-              <div style={{ position: "relative" }}>
+              <div style={{ className: "custom-blockquote", position: "relative" }}>
                 <SyntaxHighlighter
                   style={vscDarkPlus}
                   language={match[1]}
@@ -51,6 +49,7 @@ export default function MarkdownRenderer({ content }) {
                     className="copy-btn"
                     onClick={(e) => {
                       let elem = document.getElementById(`${codeRepetition}`);
+                      // let elem = elem.querySelector(`#${codeRepetition}`);
                       elem.style.color = "white";
                       setTimeout(() => {
                         elem.style.color = "transparent";
@@ -65,9 +64,9 @@ export default function MarkdownRenderer({ content }) {
                   style={{
                     color: "transparent",
                     position: "absolute",
-                    top: "1.5rem",
-                    right: "0.5rem",
-                    // display: "none",
+                    top: "0rem",
+                    right: "2.5rem",
+
                     transition: "color 250ms ease-in-out",
                   }}
                 >
