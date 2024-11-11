@@ -151,6 +151,26 @@ button:hover {
   color: white;
 }
 
+.copy-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  outline: none;
+  border: none;
+  aspect-ratio: 1;
+  height: 2rem;
+  display: flex;
+  background-color: transparent;
+  transition: background-color 250ms ease-in-out;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.copy-btn:hover {
+  background-color: #555555;
+  color: white;
+  translate: none;
+}
+
 @media (max-width: 800px) {
   /* body {
     overflow: hidden;
