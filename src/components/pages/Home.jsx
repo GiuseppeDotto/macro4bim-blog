@@ -3,10 +3,13 @@ import BackgroundVideo from "../../assets/BackgroundVideo.mp4";
 import "./home.css";
 import { Link } from "react-router-dom";
 import pym4bLogo from "../../assets/header/pym4b-white.png";
+import { useContext } from "react";
+import AuthContext from "../common/Auth/authContext";
+import WIPmodal from "../common/WIPmodal/WIPmodal";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <div className="hero">
         <video muted={true} loop={true} autoPlay={true}>
           <source src={BackgroundVideo} type="video/mp4" />
@@ -36,14 +39,7 @@ export default function Home() {
         for you a valid educational source.
       </p>
       <h2>Most Recent Posts</h2>
-      <div className="image-small">
-        <img
-          src="https://media2.giphy.com/media/hvN3SkNMRSB7mZa8JL/giphy.gif"
-          alt="wip"
-          style={{ objectFit: "cover" }}
-        />
-        <p>We are working on it...</p>
-      </div>
+      <WIPmodal />
       <h2>pyM4B - extension for pyRevit</h2>
       <p>
         Most of our scripts are built to be used as extension as the majestic pyRevit.{" "}
@@ -56,33 +52,13 @@ export default function Home() {
         <img src={pym4bLogo} />
         <span>Learn More</span>
       </Link>
-      <h2>Next Steps...</h2>
-      <h3>low difficulty</h3>
-      <ul>
-        <li>Rewrite all the posts including metadata</li>
-        <li>Nice looking post gallery</li>
-        <li>custom search based on post tags</li>
-      </ul>
-      <h3>high difficulty</h3>
-      <ul>
-        <li>
-          User
-          <ul>
-            <li>Store use data in session</li>
-            <li>
-              create user info page with
-              <ul>
-                <li>username</li>
-                <li>email (to change?)</li>
-                <li>password (to change?)</li>
-                <li>liked posts</li>
-                <li>commented posts</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>Comments</li>
-      </ul>
-    </div>
+      <h2>Web developing</h2>
+      <p>
+        And finally, some updated from our last adventure, the web developing. Yes, we are
+        all in with different programming languages (mostly <b>javascript</b>) and
+        different way to approach the industry. <br />
+        With another set of tools which require different skills and open new horizons.
+      </p>
+    </>
   );
 }

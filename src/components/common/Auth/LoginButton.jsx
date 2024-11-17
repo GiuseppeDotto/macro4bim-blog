@@ -28,8 +28,11 @@ const personIconFill = (
 );
 
 export default function LoginButton() {
+  // load login credentials
   const { user, login, authReady } = useContext(AuthContext);
   // console.log(user);
+
+  // edit button on mobile screens
   const [isMobile, setIsMobile] = useState(window.innerWidth < 500);
   useEffect(() => {
     const handleResize = () => {

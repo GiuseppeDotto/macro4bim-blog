@@ -10,6 +10,18 @@ import LoginButton from "./components/common/Auth/LoginButton";
 import AuthContext, { AuthContextProvider } from "./components/common/Auth/authContext";
 
 function App() {
+  return (
+    <AuthContextProvider>
+      <HeaderComponent />
+      <LoginButton />
+      {/* <LoginButton login={login} /> */}
+      <Main />
+      <Footer />
+    </AuthContextProvider>
+  );
+}
+
+function Main() {
   // load posts
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -27,43 +39,31 @@ function App() {
   let successFetch = typeof posts == "object" && posts.length > 0;
 
   // check user authentication
-  // const { user, login } = useContext(AuthContext);
-  // const val = useContext(AuthContext);
-  // console.log(val);
+  const { user } = useContext(AuthContext);
 
   return (
-    <AuthContextProvider>
-      <HeaderComponent />
-      <LoginButton />
-      {/* <LoginButton login={login} /> */}
-      <div
-        className="main"
-        style={{
-          marginTop: `${useLocation().pathname == "/" ? "calc(100vh + 1rem)" : ""}`,
-        }}
-      >
-        <Routes>
-          {
-            // scroll up at each route change
-            window.scrollTo(0, 0)
-          }
-          {successFetch && <Route path="/blog" element={<BlogPage posts={posts} />} />}
-          <Route path="/" element={<Home />} />
-          <Route path="/pym4b" element={<PyM4B />} />
-          {successFetch &&
-            posts.map((post) => {
-              return (
-                <Route
-                  key={post._id}
-                  path={post.slug}
-                  element={<BlogPost post={post} />}
-                />
-              );
-            })}
-        </Routes>
-      </div>
-      <Footer />
-    </AuthContextProvider>
+    <div
+      className="main"
+      style={{
+        marginTop: `${useLocation().pathname == "/" ? "calc(100vh + 1rem)" : ""}`,
+      }}
+    >
+      <Routes>
+        {
+          // scroll up at each route change
+          window.scrollTo(0, 0)
+        }
+        {successFetch && <Route path="/blog" element={<BlogPage posts={posts} />} />}
+        <Route path="/" element={<Home />} />
+        <Route path="/pym4b" element={<PyM4B />} />
+        {successFetch &&
+          posts.map((post) => {
+            return (
+              <Route key={post._id} path={post.slug} element={<BlogPost post={post} />} />
+            );
+          })}
+      </Routes>
+    </div>
   );
 }
 

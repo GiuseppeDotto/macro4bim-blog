@@ -1,8 +1,20 @@
+import { useState } from "react";
+import WIPmodal from "../WIPmodal/WIPmodal";
 import "./footer.css";
 
+function modalWIP() {
+  return (
+    <dialog open>
+      <WIPmodal />
+    </dialog>
+  );
+}
 export default function Footer() {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <>
+      <WIPmodal asModal={true} showModal={showModal} />
       <footer>
         <div className="register">
           <p>Stay posted with our new posts!</p>
@@ -11,7 +23,14 @@ export default function Footer() {
               <input type="text" name="" id="" placeholder="name" />
               <input type="email" name="" id="" placeholder="e-mail" />
             </div>
-            <button>Register</button>
+            <button
+              onClick={() => {
+                console.log("poipoi");
+                <modalWIP />;
+              }}
+            >
+              Register
+            </button>
           </div>
         </div>
         <br />
