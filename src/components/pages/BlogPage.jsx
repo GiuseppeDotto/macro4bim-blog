@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { VotesIcon, ViewsIcon } from "../common/Blog/PostShareAndMetadata";
 import DateFormat from "../common/DateFormat";
 import "./blogpage.css";
+import { array } from "prop-types";
 
 function PostCard({ post }) {
   return (
@@ -66,8 +67,16 @@ function DetailView({ posts }) {
   );
 }
 
+function searchPost(text, posts, setVisiblePosts) {
+  const searchingPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(text.toLowerCase())
+  );
+  setVisiblePosts(searchingPosts);
+}
+
 export default function BlogPage({ posts }) {
   const [listMode, setListMode] = useState(true);
+  const [visiblePosts, setVisiblePosts] = useState(posts);
 
   return (
     <>
@@ -79,15 +88,28 @@ export default function BlogPage({ posts }) {
       </p>
 
       <ul className="button-list" style={{ marginLeft: "auto" }}>
-        <li className={listMode ? "active" : ""} onClick={() => setListMode(!listMode)}>
+        <input
+          type="text"
+          name="search-post"
+          className="input-search"
+          placeholder="search..."
+          onChange={(e) => searchPost(e.target.value, posts, setVisiblePosts)}
+        />
+        <li
+          className={listMode ? "active" : ""}
+          onClick={(e) => (e.target.className == "active" ? "" : setListMode(!listMode))}
+        >
           Tiles View
         </li>
-        <li className={!listMode ? "active" : ""} onClick={() => setListMode(!listMode)}>
+        <li
+          className={!listMode ? "active" : ""}
+          onClick={(e) => (e.target.className == "active" ? "" : setListMode(!listMode))}
+        >
           Details
         </li>
       </ul>
 
-      {listMode ? <TileView posts={posts} /> : <DetailView posts={posts} />}
+      {listMode ? <TileView posts={visiblePosts} /> : <DetailView posts={visiblePosts} />}
     </>
   );
 }

@@ -49,3 +49,22 @@
   display: flex;
   gap: 0.5rem;
 }
+
+.input-search {
+  outline: 1px solid hsl(0, 0%, 80%);
+  padding: 0.15rem 0.3rem;
+  color: grey;
+  transition: 250ms;
+  border: none;
+}
+.input-search::placeholder {
+  color: hsl(0, 0%, 80%);
+}
+
+.input-search:hover {
+  outline-color: grey;
+}
+.input-search.active {
+  color: grey;
+  text-decoration: underline;
+}
