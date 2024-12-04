@@ -65,45 +65,31 @@ img {
 
 .comment-add {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 0.5rem;
-  margin: 2rem 0;
-  padding-top: 1rem;
+  padding: 1rem 0;
   h4 {
-    flex-basis: 100%;
+    margin: 0;
+  }
+  textarea {
+    border-radius: 0;
+    border: 1px solid darkgray;
+  }
+  *:focus {
+    outline: 1px solid darkgray;
   }
   small {
-    flex-basis: 100%;
     color: darkgray;
     text-align: right;
   }
-  input,
-  textarea {
+}
+.comment-add > div {
+  display: flex;
+  gap: 0.5rem;
+  input {
     flex: 1;
-    outline: none;
     border: none;
     border-bottom: 1px solid darkgray;
-    height: fit-content;
-  }
-  textarea {
-    height: 3rem;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  button {
-    flex: 0;
-    padding: 0.33rem;
-    margin-top: auto;
-    background-color: #404040;
-    color: darkgray;
-    outline: none;
-    border: 1px solid hsl(0, 0%, 95%);
-    transition: translate 250ms ease-in-out;
-  }
-  button:hover {
-    translate: 0 -0.25rem;
-    color: white;
-    background-color: #757575;
-    font-weight: 200;
   }
 }
 

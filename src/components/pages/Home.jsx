@@ -40,7 +40,14 @@ export default function Home() {
       </p>
       <h2>Most Recent Posts</h2>
       <WIPmodal />
-      <h2>pyM4B - extension for pyRevit</h2>
+      <h2>
+        pyM4B - extension for pyRevit{" "}
+        <img
+          src="https://img.icons8.com/?size=100&id=P6xa2jpQDe1a&format=png&color=000000"
+          alt="pyrevit-icon"
+          style={{ width: "2rem", translate: "0 8px" }}
+        />
+      </h2>
       <p>
         Most of our scripts are built to be used as extension as the majestic pyRevit.{" "}
         <br />
@@ -52,13 +59,22 @@ export default function Home() {
         <img src={pym4bLogo} />
         <span>Learn More</span>
       </Link>
-      <h2>Web developing</h2>
+      <h2>Web developing 🌐</h2>
       <p>
-        And finally, some updated from our last adventure, the web developing. Yes, we are
-        all in with different programming languages (mostly <b>javascript</b>) and
-        different way to approach the industry. <br />
-        With another set of tools which require different skills and open new horizons.
+        And finally, some updated from our last adventure, the web developing. <br />
+        Yes, we are all in with different programming languages (mostly{" "}
+        <b style={{ color: "var(--color-third)" }}>javascript</b>) and different ways to
+        approach the industry with another set of tools which require{" "}
+        <span style={{ color: "var(--color-first" }}>different skills</span> and open new
+        horizons.
       </p>
+      <div className="image-small">
+        <img
+          src="https://media3.giphy.com/media/ii8uedZgeKlIKJq1Rz/giphy.gif"
+          alt="to-the-moon!"
+          srcset=""
+        />
+      </div>
     </>
   );
 }
