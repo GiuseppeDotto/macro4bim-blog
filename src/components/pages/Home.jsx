@@ -1,5 +1,5 @@
 import mainLogo from "../../assets/mainLogo.png";
-import BackgroundVideo from "../../assets/BackgroundVideo.mp4";
+import BackgroundVideo from "../../assets/BackgroundVideo-h264.mp4";
 import "./home.css";
 import { Link } from "react-router-dom";
 import pym4bLogo from "../../assets/header/pym4b-white.png";
