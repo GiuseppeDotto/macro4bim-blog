@@ -41,8 +41,6 @@ function Main() {
   // check user authentication
   const { user } = useContext(AuthContext);
 
-  console.log(posts);
-
   return (
     <div
       className="main"
