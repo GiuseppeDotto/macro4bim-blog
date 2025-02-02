@@ -1,10 +1,10 @@
 <!-- {
-"createdAt": "Aug 7, 1993",
-"title": "Template",
+"createdAt": "Mar 07, 2022",
+"title": "Show non-perpendicular Structural Grids",
 "tags": ["Dynamo", "Revit API", "Python"],
 "votes": 0,
 "views": 1268,
-"published": false
+"published": true
 } -->
 
 # Show non-perpendicular Structural Grids

@@ -14,7 +14,10 @@ module.exports.handler = async (event, context) => {
     await conn;
     const query = event.queryStringParameters;
     let published = query.published || "";
-    const allPost = await Post.find({ published: `${published}` }).exec();
+    const allPost = await Post.find({ published: `${published}` })
+      .sort({ createdAt: 1 })
+      .exec();
+    console.log("here is mongoose", allPost);
     return {
       statusCode: 200,
       body: JSON.stringify(allPost),

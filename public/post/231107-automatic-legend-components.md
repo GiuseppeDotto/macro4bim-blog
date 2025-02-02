@@ -1,6 +1,6 @@
 <!-- {
 "createdAt": "Nov 7, 2023",
-"Title": "Automatic Legend Components",
+"title": "Automatic Legend Components",
 "tags": ["Materia tags", "Revit Family", "Dimensions"],
 "votes": 4,
 "views": 622,
