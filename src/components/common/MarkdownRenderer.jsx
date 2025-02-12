@@ -2,11 +2,11 @@ import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import PropTypes, { element } from "prop-types";
+import rehypeSanitize from "rehype-sanitize";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { useState } from "react";
 
 const copyIcon = (
   <svg
@@ -23,7 +23,14 @@ const copyIcon = (
 );
 
 export default function MarkdownRenderer({ content }) {
-  const [stateMsg, SetStateMsg] = useState("");
+  // const customSchema = {
+  //   ...defaultSchema,
+  //   tagNames: [...(defaultSchema.tagNames || []), "iframe"], // Allow iframe tags
+  //   attributes: {
+  //     ...defaultSchema.attributes,
+  //     iframe: ["src", "width", "height", "allow", "allowfullscreen", "frameborder"], // Allow specific iframe attributes
+  //   },
+  // };
 
   return (
     <div className="md-renderer">
