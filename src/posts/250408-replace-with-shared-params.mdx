@@ -1,0 +1,16 @@
+---
+title: Replace With Shared Parameter Issue
+description: Speedup the Shared Parameters assignation.
+createdAt: 2025-04-08
+tags:
+  - Revit API
+  - Python
+---
+
+# Replace With Shared Parameter Issue
+
+The **goal** is to make sure that all the shared parameters are properly assigned in a family.
+
+Often it happens that the families have parameters named as some shared parameters, but that are custom parameters instead.... I get it, all the clicks to select the shared parameter you want to have is more tedious that just type the parameter name itself! 😅
+
+Despite the dedicated method in the Revit API, Revit return an unexpected error while trying to replace a custom parameter with a shared parameter having the **same name**!

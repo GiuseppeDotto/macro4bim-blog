@@ -23,9 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-# Local Netlify folder
-.netlify
-
-# Local data not to share
+# Local variables
 .env
-mongodb-mongoose/createBlog.js
