@@ -63,3 +63,32 @@
 .btn-del:hover {
   background-color: #c00;
 }
+
+#post-bottom-navigation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+#post-bottom-navigation a {
+  text-decoration: none;
+  color: #333;
+  outline: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  small {
+    margin-top: 5px;
+  }
+}
+
+#post-bottom-navigation a:hover {
+  background-color: hsl(0, 0%, 95%);
+}
+
+#post-bottom-navigation a div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}

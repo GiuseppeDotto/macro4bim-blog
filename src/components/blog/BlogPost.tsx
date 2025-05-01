@@ -3,13 +3,22 @@ import { Post } from "../../classes/Post";
 import HeartIcon from "../common/HeartIcon";
 import CommentSection from "./CommentSection";
 import DivSpanTag from "./DivSpanTag";
-import { UserContext } from "../../App";
-import { BsEye, BsLink45Deg, BsLinkedin } from "react-icons/bs";
+import { PostManagerContext, UserContext } from "../../App";
+import {
+  BsArrow90DegLeft,
+  BsArrowLeft,
+  BsArrowRight,
+  BsEye,
+  BsLink45Deg,
+  BsLinkedin,
+} from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export default function BlogPost({ post }: { post: Post }) {
   const user = useContext(UserContext);
   const voteKeys = user?.email || Date.now().toString();
   const [postVotes, setPostVotes] = useState(post.metadata.votes);
+  const postManager = useContext(PostManagerContext);
 
   const votePost = () => {
     const newVotes = post.votePost(voteKeys);
@@ -49,6 +58,39 @@ export default function BlogPost({ post }: { post: Post }) {
     );
   };
 
+  const PostNavigation = () => {
+    const index = postManager.posts.indexOf(post);
+    const previousPost = postManager.posts[index - 1];
+    const nextPost = postManager.posts[index + 1];
+
+    return (
+      <nav id="post-bottom-navigation">
+        {previousPost ? (
+          <Link to={`/post/${previousPost.slug}`}>
+            <small>previous post</small>
+            <div>
+              <BsArrowLeft style={{ fontSize: "1.5em" }} />
+              <h3>{previousPost.title}</h3>
+            </div>
+          </Link>
+        ) : (
+          <div />
+        )}
+        {nextPost ? (
+          <Link to={`/post/${nextPost.slug}`}>
+            <small>next post</small>
+            <div>
+              <h3>{nextPost.title}</h3>
+              <BsArrowRight style={{ fontSize: "1.5em" }} />
+            </div>
+          </Link>
+        ) : (
+          <div />
+        )}
+      </nav>
+    );
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
       <PostTopInfo />
@@ -59,6 +101,7 @@ export default function BlogPost({ post }: { post: Post }) {
       <div className="post-box">
         <CommentSection post={post} />
       </div>
+      <PostNavigation />
     </div>
   );
 }
