@@ -40,52 +40,60 @@ export default function ToDoList() {
 
   return (
     <>
-      <h3>To-Do List 🔮</h3>
-      <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-        {toDoList.map((item) => {
-          return (
-            <li
-              key={item.id}
-              onMouseEnter={(e) => {
-                const innerSpan = (e.target as HTMLInputElement).querySelector("span");
-                innerSpan ? (innerSpan.style.display = "inline") : null;
+      <details>
+        <summary style={{ marginBottom: "10px", cursor: "pointer", width: "fit-content" }}>
+          <h3 style={{ display: "inline" }}>To-Do List 🔮</h3>
+        </summary>
+        <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+          {toDoList.map((item) => {
+            return (
+              <li
+                key={item.id}
+                onMouseEnter={(e) => {
+                  const innerSpan = (e.target as HTMLInputElement).querySelector("span");
+                  innerSpan ? (innerSpan.style.display = "inline") : null;
+                }}
+                onMouseLeave={(e) => {
+                  const innerSpan = (e.target as HTMLInputElement).querySelector("span");
+                  innerSpan ? (innerSpan.style.display = "none") : null;
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={item.done}
+                  onChange={() => updateTodo({ ...item, done: !item.done })}
+                />
+                {item.title}
+                <span
+                  style={{ cursor: "pointer", display: "none" }}
+                  onClick={() => removeTodo(item)}
+                >
+                  🗑️
+                </span>
+              </li>
+            );
+          })}
+          <li>
+            <input
+              style={{ margin: "1rem 0", width: "250px" }}
+              type="text"
+              placeholder="new to-do..."
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+            />
+            <button
+              onClick={() => {
+                if (!newTitle) return;
+                addTodo(newTitle);
+                setNewTitle("");
               }}
-              onMouseLeave={(e) => {
-                const innerSpan = (e.target as HTMLInputElement).querySelector("span");
-                innerSpan ? (innerSpan.style.display = "none") : null;
-              }}
+              style={{ marginLeft: "10px", aspectRatio: "1 / 1", width: "25px" }}
             >
-              <input
-                type="checkbox"
-                checked={item.done}
-                onChange={() => updateTodo({ ...item, done: !item.done })}
-              />
-              {item.title}
-              <span style={{ cursor: "pointer", display: "none" }} onClick={() => removeTodo(item)}>
-                🗑️
-              </span>
-            </li>
-          );
-        })}
-        <li>
-          <input
-            style={{ margin: "1rem 0" }}
-            type="text"
-            placeholder="new to-do..."
-            value={newTitle}
-            onChange={(e) => setNewTitle(e.target.value)}
-          />
-          <button
-            onClick={() => {
-              if (!newTitle) return;
-              addTodo(newTitle);
-              setNewTitle("");
-            }}
-          >
-            +
-          </button>
-        </li>
-      </ul>
+              +
+            </button>
+          </li>
+        </ul>
+      </details>
     </>
   );
 }

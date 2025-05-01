@@ -4,14 +4,7 @@ import HeartIcon from "../common/HeartIcon";
 import CommentSection from "./CommentSection";
 import DivSpanTag from "./DivSpanTag";
 import { PostManagerContext, UserContext } from "../../App";
-import {
-  BsArrow90DegLeft,
-  BsArrowLeft,
-  BsArrowRight,
-  BsEye,
-  BsLink45Deg,
-  BsLinkedin,
-} from "react-icons/bs";
+import { BsArrowLeft, BsArrowRight, BsEye, BsLink45Deg, BsLinkedin } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 export default function BlogPost({ post }: { post: Post }) {
@@ -43,9 +36,18 @@ export default function BlogPost({ post }: { post: Post }) {
         <div id="div-share-post">
           <small>Share:</small>
           <br />
-          <div style={{ fontSize: "18pt", display: "flex", gap: "0.5rem", marginTop: "0.5rem" }}>
-            <BsLink45Deg />
-            <BsLinkedin />
+          <div
+            style={{
+              fontSize: "18pt",
+              display: "flex",
+              gap: "0.5rem",
+              marginTop: "0.5rem",
+              outline: "3px solid red",
+              outlineOffset: "5px",
+            }}
+          >
+            <BsLink45Deg style={{ cursor: "pointer" }} />
+            <BsLinkedin style={{ cursor: "pointer" }} />
           </div>
         </div>
         <div style={{ display: "flex", gap: "0.5rem", marginTop: "auto" }}>
