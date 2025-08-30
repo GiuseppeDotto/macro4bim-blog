@@ -1,41 +1,37 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import MDXRenderer from "./MDXRenderer";
-import { PostsManager } from "../classes/PostsManager";
 import "./Blog.css";
-
-const PostManager = new PostsManager([]);
+import NewPostDialog from "./NewPostDialog";
+import { PostManagerContext } from "../App";
 
 export default function Blog() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [newPostDialog, setNewPostDialog] = useState(false);
+  const postManager = useContext(PostManagerContext);
 
   const addPost = () => {
-    PostManager.addPost({ title, content });
+    postManager.addPost({ title, content });
   };
 
   return (
     <>
       <h1>Macro4BIM</h1>
       <h2>Blog</h2>
-      <div className="new-post-form">
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="new post title here..."
-        />
-        <div className="editor-preview">
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="new post content here..."
-          />
-          <div style={{ display: "block" }}>
-            <MDXRenderer content={content} />
-          </div>
-        </div>
+      <hr />
+      <button onClick={() => setNewPostDialog(true)}>CREATE NEW POST</button>
+      <NewPostDialog open={newPostDialog} onClose={() => setNewPostDialog(false)} />
+
+      <div className="post-list">
+        {postManager.posts.map((post) => {
+          return (
+            <div className="post-card" key={post.slug}>
+              <h2>{post.title}</h2>
+              <small>{post.createdAt.toLocaleDateString()}</small>
+            </div>
+          );
+        })}
       </div>
-      <button onClick={addPost}>create new Post</button>
     </>
   );
 }

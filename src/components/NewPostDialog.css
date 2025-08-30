@@ -1,0 +1,49 @@
+.new-post-dialog {
+  width: min(1000px, 90%);
+  max-height: 90%;
+}
+
+.new-post-div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  input,
+  textarea {
+    border: none;
+  }
+  input:focus,
+  textarea:focus {
+    outline: 1px solid #ccc;
+  }
+}
+
+.new-post-div > input {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.new-post-div > button {
+  margin-left: auto;
+}
+
+.post-preview-container {
+  display: flex;
+  gap: 10px;
+  margin: 5px 0px;
+  padding: 2px;
+  textarea,
+  div {
+    flex: 1;
+    resize: none;
+    field-sizing: content;
+
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}

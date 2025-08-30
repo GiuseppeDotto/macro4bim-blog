@@ -22,8 +22,8 @@ const CheckList = ({ items }: { items: { title: string; check: boolean }[] }) =>
     </div>
   );
 };
+
 export default function Home() {
-  const [mdxTest, setMdxText] = useState("write here");
   return (
     <>
       <h1>Macro4BIM</h1>
@@ -35,17 +35,15 @@ export default function Home() {
       <CheckList
         items={[
           { title: "implement MDX renderer", check: true },
-          { title: "create blog class", check: false },
-          { title: "create post class", check: false },
+          { title: "create blog class", check: true },
+          { title: "create post class", check: true },
+          { title: "basic blog and post pages", check: false },
           { title: "user authentication", check: false },
           { title: "link firebase DB", check: false },
           { title: "host on firestore", check: false },
           { title: "link to Google Analytics", check: false },
         ]}
       />
-      <hr />
-      <textarea value={mdxTest} onChange={(e) => setMdxText(e.target.value)} />
-      <MDXRenderer content={mdxTest} />
     </>
   );
 }
