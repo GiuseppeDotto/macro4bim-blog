@@ -1,0 +1,32 @@
+.new-post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  outline: 1px solid #ddd;
+  border-radius: 10px;
+  margin: 10px;
+  max-height: 500px;
+  overflow-y: auto;
+  input {
+    outline: none;
+    border: none;
+    font-size: 1.5em;
+  }
+  textarea {
+    outline: none;
+    border: none;
+    resize: none;
+    field-sizing: content;
+    outline: 1px solid #ddd;
+    /* max-height: 00px; */
+  }
+}
+.editor-preview {
+  display: flex;
+  gap: 10px;
+}
+
+.editor-preview > div,
+.editor-preview > textarea {
+  flex: 1;
+}

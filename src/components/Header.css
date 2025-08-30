@@ -1,0 +1,11 @@
+.main-header {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  translate: -50%;
+  outline: 1px solid #ddd;
+  box-shadow: 0 0 10px #ddd;
+  padding: 10px;
+}

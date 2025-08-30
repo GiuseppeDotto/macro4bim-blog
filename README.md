@@ -1,23 +1,50 @@
-# Macro4BIM blog
+# React + TypeScript + Vite
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e621104b-fef7-4244-bf8f-8fe9daa319c2/deploy-status)](https://app.netlify.com/sites/macro4bim/deploys)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## Journal
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- The application started with `npm create vite@latest` => choosing React and jsx
-- `npm i react-markdown` as the intention is to write post in MD
-  - all the MD files and their media are stored in `public/` folder
-  - the concept is to read only the path and rely on HTTP requests
-- MongoDB Atlas is used => `npm i mongoose`
-  - at `mongodb-mongoose/` are stored all the Schemas
-- add Netlify variable for Mongo
-  - store locally in .env file: `API_KEY=your_api_key_value`
-  - from Netlify website
+## Expanding the ESLint configuration
 
-## Guides
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-### How to publish post
+- Configure the top-level `parserOptions` property like this:
 
-the core is to update the Mongo DB, to do so, just execute the `mongodb-mongoose/createBlog.js` script.
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
+
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
+
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
+```
