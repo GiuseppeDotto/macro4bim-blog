@@ -60,9 +60,3 @@
   display: flex;
   gap: 5px;
 }
-
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}

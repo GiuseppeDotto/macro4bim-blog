@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import { PostsManager } from "./classes/PostsManager";
 import { createContext, useEffect, useState } from "react";
 import PostPage from "./components/PostPage";
+import UserSpace from "./components/UserSpace";
 
 export const PostManagerContext = createContext<PostsManager>(new PostsManager([]));
 
@@ -17,6 +18,7 @@ function App() {
     <>
       <PostManagerContext.Provider value={postManager}>
         <Header />
+        <UserSpace />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<Blog />} />

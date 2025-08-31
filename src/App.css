@@ -32,3 +32,9 @@ label.tag-label.active {
   background-color: #eee;
   color: #333;
 }
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
