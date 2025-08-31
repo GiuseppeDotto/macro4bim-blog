@@ -1,18 +1,12 @@
 import { useContext, useState } from "react";
-import MDXRenderer from "./MDXRenderer";
 import "./Blog.css";
 import NewPostDialog from "./NewPostDialog";
 import { PostManagerContext } from "../App";
+import PostCard from "./PostCard";
 
 export default function Blog() {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
   const [newPostDialog, setNewPostDialog] = useState(false);
   const postManager = useContext(PostManagerContext);
-
-  const addPost = () => {
-    postManager.addPost({ title, content });
-  };
 
   return (
     <>
@@ -23,14 +17,9 @@ export default function Blog() {
       <NewPostDialog open={newPostDialog} onClose={() => setNewPostDialog(false)} />
 
       <div className="post-list">
-        {postManager.posts.map((post) => {
-          return (
-            <div className="post-card" key={post.slug}>
-              <h2>{post.title}</h2>
-              <small>{post.createdAt.toLocaleDateString()}</small>
-            </div>
-          );
-        })}
+        {postManager.posts.map((post) => (
+          <PostCard post={post} key={post.slug} />
+        ))}
       </div>
     </>
   );

@@ -14,13 +14,22 @@ export class Post implements IPost {
   createdAt: Date;
   modifiedAt: Date | null = null;
   comments: Comment[];
+  published: boolean;
+  tags: string[];
 
-  constructor(data: IPost, slug: string) {
+  constructor(data: IPost, slug: string, published: boolean = false, tags: string[] = []) {
     this.title = data.title;
     this.content = data.content;
     this.slug = slug;
     this.createdAt = new Date();
     this.comments = [];
+    this.published = published;
+    this.tags = tags;
+  }
+
+  changePublishAttr() {
+    this.published = !this.published;
+    return this;
   }
 
   addComment(data: IComment) {

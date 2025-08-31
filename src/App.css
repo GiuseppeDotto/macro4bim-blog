@@ -1,0 +1,34 @@
+label.tag-label {
+  outline: 1px solid #ccc;
+  color: #777;
+  padding: 0px 5px;
+  border-radius: 100vh;
+  user-select: none;
+}
+
+label.tag-label.selectable {
+  color: #ccc;
+  cursor: pointer;
+  input {
+    color: #aaa;
+  }
+  input::placeholder {
+    color: #ccc;
+    font-style: italic;
+  }
+  button {
+    border-radius: 100vh;
+    border: 1px solid #ccc;
+    color: #aaa;
+    translate: 5px;
+  }
+}
+label.tag-label.selectable:hover {
+  background-color: #eee;
+  color: #777;
+}
+
+label.tag-label.active {
+  background-color: #eee;
+  color: #333;
+}

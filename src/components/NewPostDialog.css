@@ -17,13 +17,16 @@
   }
 }
 
-.new-post-div > input {
-  font-size: 1.5em;
-  font-weight: 600;
+.editor-div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px;
 }
 
-.new-post-div > button {
-  margin-left: auto;
+.editor-div > input {
+  font-size: 1.5em;
+  font-weight: 600;
 }
 
 .post-preview-container {
@@ -40,6 +43,22 @@
     max-height: 70vh;
     overflow-y: auto;
   }
+}
+
+.new-post-last-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.tags-row {
+  display: flex;
+  gap: 5px;
+}
+
+.button-div {
+  display: flex;
+  gap: 5px;
 }
 
 .close-btn {

@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import MDXRenderer from "./MDXRenderer";
 
 const CheckList = ({ items }: { items: { title: string; check: boolean }[] }) => {
   const [itemsState, setItemsState] = useState(items);
@@ -37,7 +36,7 @@ export default function Home() {
           { title: "implement MDX renderer", check: true },
           { title: "create blog class", check: true },
           { title: "create post class", check: true },
-          { title: "basic blog and post pages", check: false },
+          { title: "basic blog and post pages", check: true },
           { title: "user authentication", check: false },
           { title: "link firebase DB", check: false },
           { title: "host on firestore", check: false },
