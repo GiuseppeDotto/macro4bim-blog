@@ -3,9 +3,12 @@ import "./Header.css";
 
 export default function Header() {
   return (
-    <div className="main-header">
-      <Link to={"/"}>Home</Link>
-      <Link to={"/blog"}>Blog</Link>
-    </div>
+    <>
+      <div className="main-header">
+        <Link to={"/"}>Home</Link>
+        <Link to={"/blog"}>Blog</Link>
+      </div>
+      <div style={{ height: "50px" }} />
+    </>
   );
 }
