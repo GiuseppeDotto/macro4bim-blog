@@ -13,6 +13,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 
+import { collection, getDocs, getFirestore } from "firebase/firestore";
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -29,6 +31,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 
+// AUTHENTICATION
 export const auth = getAuth(app);
 
 export const signInRegister = async (email: string, pass: string, username: string) => {
@@ -51,3 +54,6 @@ export const GithubSignin = async () => {
   provider.addScope("email");
   signInWithRedirect(auth, provider);
 };
+
+// FIRESTORE
+export const db = getFirestore(app);
