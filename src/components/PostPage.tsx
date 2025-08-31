@@ -3,6 +3,7 @@ import { PostManagerContext } from "../App";
 import { useParams } from "react-router";
 import { Post } from "../classes/Post";
 import MDXRenderer from "./MDXRenderer";
+import PostEditor from "./PostEditor";
 
 export default function PostPage() {
   const postManager = useContext(PostManagerContext);
@@ -36,6 +37,8 @@ export default function PostPage() {
       </div>
       <hr />
       <MDXRenderer content={post.content} />
+      <hr />
+      <PostEditor post={post} />
     </>
   );
 }

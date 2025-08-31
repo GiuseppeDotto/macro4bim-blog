@@ -1,3 +1,5 @@
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
+import { db } from "../config/firebase";
 import { IPost, Post } from "./Post";
 
 const firstPost = `
@@ -27,6 +29,7 @@ export class PostsManager {
 
   constructor(posts: Post[]) {
     this.posts = posts;
+    this.fetchPosts();
     this.tags = this.tagsFromPosts();
     this.createPlaceholderPost();
   }
@@ -52,6 +55,7 @@ export class PostsManager {
     publish ? newPost.changePublishAttr() : null;
     this.posts.push(newPost);
     this.tags = this.tagsFromPosts();
+    return newPost;
   }
 
   publishPost(slug: string) {
@@ -68,5 +72,25 @@ export class PostsManager {
       post.tags.forEach((tag) => (acc.includes(tag) ? null : acc.push(tag)));
       return acc;
     }, []);
+  }
+
+  updatePost(slug: string, data: any) {
+    const postToUpdate = this.posts.find((p) => p.slug === slug);
+    if (!postToUpdate) return;
+    Object.keys(postToUpdate).map((k) => {
+      data[k] ? ((postToUpdate as any)[k] = data[k]) : null;
+    });
+
+    updateDoc(doc(db, "posts", slug), { ...postToUpdate });
+  }
+
+  async fetchPosts() {
+    (await getDocs(collection(db, "posts"))).forEach((doc) => {
+      const title = doc.data().title;
+      const content = doc.data().content;
+
+      const newPost = this.addPost({ title, content }, false, []);
+      updateDoc(doc.ref, { ...newPost });
+    });
   }
 }

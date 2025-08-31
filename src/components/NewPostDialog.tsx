@@ -2,6 +2,7 @@ import { MouseEvent, useContext, useEffect, useRef, useState } from "react";
 import MDXRenderer from "./MDXRenderer";
 import { PostManagerContext } from "../App";
 import "./NewPostDialog.css";
+import CloseButton from "./CloseButton";
 
 export default function NewPostDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [title, setTitle] = useState("");
@@ -106,9 +107,7 @@ export default function NewPostDialog({ open, onClose }: { open: boolean; onClos
           </div>
         </div>
 
-        <button className="close-btn" onClick={resetAndClose}>
-          X
-        </button>
+        <CloseButton onClick={resetAndClose} />
       </div>
     </dialog>
   );

@@ -1,0 +1,25 @@
+.post-editor {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+
+  width: min(1200px, 90vw);
+  height: min(900px, 90vh);
+}
+.post-editor > div {
+  flex: 1;
+}
+
+.post-editor > div:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+
+  textarea {
+    resize: none;
+    field-sizing: content;
+  }
+}
+
+.post-editor > div:nth-child(2) {
+  overflow: auto;
+}

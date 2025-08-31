@@ -3,6 +3,7 @@ import "./UserSpace.css";
 import { auth, GithubSignin, GoogleSignin, signInRegister } from "../config/firebase";
 import { UserContext } from "../App";
 import { signOut } from "firebase/auth";
+import CloseButton from "./CloseButton";
 
 export default function UserSpace() {
   const user = useContext(UserContext);
@@ -23,14 +24,6 @@ export default function UserSpace() {
     if (!password) return;
     if (!username) setUsername(email.split("@")[0]);
     signInRegister(email, password, username);
-  };
-
-  const CloseButton = () => {
-    return (
-      <button className="close-btn" onClick={triggerDialog}>
-        X
-      </button>
-    );
   };
 
   const NewUserDialog = () => {
@@ -54,7 +47,7 @@ export default function UserSpace() {
             GITHUB SIGNIN
           </button>
         </div>
-        <CloseButton />
+        <CloseButton onClick={triggerDialog} />
       </>
     );
   };
@@ -74,7 +67,7 @@ export default function UserSpace() {
           <div>{user?.metadata.lastSignInTime}</div>
         </div>
         <button onClick={() => signOut(auth)}>SIGN-OUT</button>
-        <CloseButton />
+        <CloseButton onClick={triggerDialog} />
       </>
     );
   };
