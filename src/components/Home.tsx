@@ -37,7 +37,7 @@ export default function Home() {
           { title: "create blog class", check: true },
           { title: "create post class", check: true },
           { title: "basic blog and post pages", check: true },
-          { title: "user authentication", check: false },
+          { title: "user authentication", check: true },
           { title: "link firebase DB", check: false },
           { title: "host on firestore", check: false },
           { title: "link to Google Analytics", check: false },

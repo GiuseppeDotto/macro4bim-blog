@@ -4,3 +4,17 @@
   right: 20px;
   z-index: 1;
 }
+
+.user-table {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin: 10px 0;
+}
+
+.user-table > div {
+  border-bottom: 1px solid #ddd;
+}
+
+.user-table > div:nth-child(odd) {
+  font-weight: 600;
+}
