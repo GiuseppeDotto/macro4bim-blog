@@ -40,7 +40,7 @@ export default function PostPage() {
       <hr />
 
       <dialog ref={dialogEditRef}>
-        <PostEditor post={post} onChange={() => {}} />
+        <PostEditor post={post} onChange={triggerDialog} />
         <CloseButton onClick={triggerDialog} />
       </dialog>
       <button

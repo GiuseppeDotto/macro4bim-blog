@@ -74,6 +74,8 @@ export class PostsManager {
 
   updatePost(updatedPost: Post) {
     this.posts = this.posts.map((post) => (post.slug === updatedPost.slug ? updatedPost : post));
+    console.log("POST UPDATE: ", updatedPost);
+
     updateDoc(doc(db, "posts", updatedPost.slug), { ...updatedPost });
   }
 

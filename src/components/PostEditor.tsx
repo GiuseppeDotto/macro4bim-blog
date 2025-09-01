@@ -11,16 +11,17 @@ export default function PostEditor({ post, onChange }: { post?: Post; onChange: 
   const [content, setContent] = useState(post?.content || "");
   const [tags, setTags] = useState(post?.tags || []);
   const [published, setPublished] = useState(post?.published || false);
+  const [createdAt, setCreatedAt] = useState(post?.createdAt || new Date());
   const postManager = useContext(PostManagerContext);
 
   const updatePost = () => {
     if (!post) return;
-    postManager.updatePost(post.slug, { title, content });
+    postManager.updatePost({ ...post, title, content, tags, published, createdAt } as Post);
     onChange();
   };
 
   const savePost = () => {
-    postManager.addPost({ title, content }, published, tags);
+    postManager.addPost({ title, content, tags, published });
     onChange();
   };
 
@@ -45,6 +46,15 @@ export default function PostEditor({ post, onChange }: { post?: Post; onChange: 
         <div>
           <TagsDiv currentlyActive={tags} readOnly={false} onChange={setTags} />
           <div style={{ display: "flex", alignItems: "flex-end", gap: "20px" }}>
+            <div>
+              <small>Created At:</small>
+              <br />
+              <input
+                type="date"
+                value={createdAt.toISOString().split("T")[0]}
+                onChange={(e) => setCreatedAt(new Date(e.target.value))}
+              />
+            </div>
             <Toggle title="Published" onChange={setPublished} startingValue={published} />
             {post ? (
               <button onClick={updatePost}>UPDATE</button>
