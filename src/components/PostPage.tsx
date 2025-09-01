@@ -6,7 +6,6 @@ import MDXRenderer from "./MDXRenderer";
 import PostEditor from "./PostEditor";
 import TagsDiv from "./TagsDiv";
 import CloseButton from "./CloseButton";
-import Toggle from "./Toggle";
 
 export default function PostPage() {
   const postManager = useContext(PostManagerContext);
@@ -28,7 +27,6 @@ export default function PostPage() {
 
   return (
     <>
-      <Toggle title="test" onChange={() => {}} />
       <h1>{post.title}</h1>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <TagsDiv currentlyActive={post.tags} readOnly={true} />
