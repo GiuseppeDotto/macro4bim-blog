@@ -15,8 +15,16 @@ export const UserContext = createContext<User | null>(null);
 
 function App() {
   const [postManager, setPostManager] = useState(new PostsManager([]));
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
-  useEffect(() => setPostManager(postManager), [postManager]);
+  useEffect(() => {
+    const initializePostManager = async () => {
+      await postManager.fetchPosts();
+      setPostManager(postManager);
+      setLoading(false);
+    };
+    initializePostManager();
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (userFB) => {
@@ -24,6 +32,8 @@ function App() {
     });
     return () => unsubscribe();
   }, []);
+
+  if (loading) return;
 
   return (
     <>

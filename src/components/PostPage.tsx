@@ -21,7 +21,7 @@ export default function PostPage() {
 
   useEffect(() => {
     setPost(postManager.postBySlug(slug ? slug : ""));
-  }, [slug]);
+  }, [slug, postManager.posts]);
 
   if (!post) return <h1>404: page not found</h1>;
 
@@ -32,7 +32,7 @@ export default function PostPage() {
         <TagsDiv currentlyActive={post.tags} readOnly={true} />
         <div>
           <small>Create At:</small> <br />
-          {post.createdAt.toLocaleDateString()}{" "}
+          {post.createdAt.toLocaleDateString()}
         </div>
       </div>
       <hr />

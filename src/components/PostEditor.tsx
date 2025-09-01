@@ -1,6 +1,5 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { Post } from "../classes/Post";
-import CloseButton from "./CloseButton";
 import MDXRenderer from "./MDXRenderer";
 import "./PostEditor.css";
 import { PostManagerContext } from "../App";

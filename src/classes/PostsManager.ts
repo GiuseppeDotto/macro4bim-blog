@@ -29,20 +29,19 @@ export class PostsManager {
 
   constructor(posts: Post[]) {
     this.posts = posts;
-    this.fetchPosts();
     this.tags = this.tagsFromPosts();
     this.createPlaceholderPost();
   }
 
   createPlaceholderPost() {
-    this.addPost({ title: "Hello World!", content: firstPost }, false, ["webdev", "spumeggiante"]);
+    this.addPost({ title: "Hello World!", content: firstPost });
   }
 
   postBySlug(slug: string) {
     return this.posts.find((p) => p.slug === slug);
   }
 
-  addPost(data: IPost, publish = false, tags: string[] = []) {
+  addPost(data: IPost) {
     let slug = data.title
       .toLowerCase()
       .replace(/[^a-z\s-+]/g, "")
@@ -51,8 +50,7 @@ export class PostsManager {
     if (this.posts.map((p) => p.slug).includes(slug)) {
       slug = slug + "-" + Date.now().toString(16);
     }
-    const newPost = new Post(data, slug, publish, tags);
-    publish ? newPost.changePublishAttr() : null;
+    const newPost = new Post(data, data.slug || slug);
     this.posts.push(newPost);
     this.tags = this.tagsFromPosts();
     return newPost;
@@ -74,23 +72,18 @@ export class PostsManager {
     }, []);
   }
 
-  updatePost(slug: string, data: any) {
-    const postToUpdate = this.posts.find((p) => p.slug === slug);
-    if (!postToUpdate) return;
-    Object.keys(postToUpdate).map((k) => {
-      data[k] ? ((postToUpdate as any)[k] = data[k]) : null;
-    });
-
-    updateDoc(doc(db, "posts", slug), { ...postToUpdate });
+  updatePost(updatedPost: Post) {
+    this.posts = this.posts.map((post) => (post.slug === updatedPost.slug ? updatedPost : post));
+    updateDoc(doc(db, "posts", updatedPost.slug), { ...updatedPost });
   }
 
   async fetchPosts() {
-    (await getDocs(collection(db, "posts"))).forEach((doc) => {
-      const title = doc.data().title;
-      const content = doc.data().content;
-
-      const newPost = this.addPost({ title, content }, false, []);
-      updateDoc(doc.ref, { ...newPost });
+    (await getDocs(collection(db, "posts"))).docs.map((doc) => {
+      const data = doc.data() as Post;
+      const post = new Post(data, data.slug);
+      this.posts.map((p) => p.slug).includes(post.slug)
+        ? null
+        : (this.posts = [...this.posts, post]);
     });
   }
 }
