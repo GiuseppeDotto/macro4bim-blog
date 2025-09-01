@@ -1,0 +1,35 @@
+.tags-container {
+  display: flex;
+  gap: 5px;
+  margin: 5px 0;
+}
+
+.span-tag {
+  outline: 1px solid #ccc;
+  border-radius: 50vh;
+  padding: 0 5px;
+  color: #777;
+  user-select: none;
+}
+
+.span-tag.active {
+  background-color: #eee;
+  outline-color: #777;
+  color: #333;
+}
+
+.span-tag > input {
+  border: none;
+  outline: none;
+  field-sizing: content;
+}
+
+.span-tag > input::placeholder {
+  color: #ddd;
+}
+
+.span-tag > button {
+  border-radius: 50vh;
+  border: 1px solid #ccc;
+  translate: 5px;
+}

@@ -1,36 +1,27 @@
-import { MouseEvent, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import MDXRenderer from "./MDXRenderer";
 import { PostManagerContext } from "../App";
 import "./NewPostDialog.css";
 import CloseButton from "./CloseButton";
+import TagsDiv from "./TagsDiv";
 
 export default function NewPostDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const dialogRef = useRef<HTMLDialogElement>(null);
   const postManager = useContext(PostManagerContext);
-  const [tagList, setTagList] = useState([...postManager.tags]);
-  const [newTag, setNewTag] = useState("");
+  const [tagList, setTagList] = useState<string[]>([]);
 
   useEffect(() => {
     open ? dialogRef.current?.showModal() : dialogRef.current?.close();
   }, [open]);
 
-  const getActiveTags = () => {
-    const tagLabels = document.querySelector(".tags-row")?.querySelectorAll("label.active");
-    const tags: string[] = [];
-    tagLabels ? tagLabels.forEach((t) => tags.push(t.textContent)) : null;
-    return tags;
-  };
-
   const savePost = () => {
-    const tags = getActiveTags();
-    postManager.addPost({ title, content }, false, tags);
+    postManager.addPost({ title, content }, false, tagList);
     onClose();
   };
   const saveAndPublish = () => {
-    const tags = getActiveTags();
-    postManager.addPost({ title, content }, true, tags);
+    postManager.addPost({ title, content }, true, tagList);
     onClose();
   };
 
@@ -38,21 +29,6 @@ export default function NewPostDialog({ open, onClose }: { open: boolean; onClos
     setTitle("");
     setContent("");
     onClose();
-  };
-
-  const addActiveClass = (e: MouseEvent) => {
-    const span = e.target as HTMLSpanElement;
-    span.classList.contains("active")
-      ? span.classList.remove("active")
-      : span.classList.add("active");
-  };
-
-  const addTag = (e: MouseEvent<HTMLButtonElement>) => {
-    const input = (e.target as HTMLButtonElement).parentElement?.querySelector("input");
-    if (input instanceof HTMLInputElement) {
-      if (!input.value) return;
-      setTagList([...tagList, input.value]);
-    }
   };
 
   return (
@@ -79,28 +55,11 @@ export default function NewPostDialog({ open, onClose }: { open: boolean; onClos
         </div>
 
         <div className="new-post-last-row">
-          <div>
-            <small>Tags:</small>
-            <div className="tags-row">
-              {tagList.map((tag) => (
-                <label key={tag} onClick={addActiveClass}>
-                  {tag}
-                </label>
-              ))}
-              <label>
-                <input
-                  type="text"
-                  placeholder="new-tag"
-                  value={newTag}
-                  onChange={(e) => setNewTag(e.target.value)}
-                  style={{
-                    width: `${Math.max(newTag.length + 1, 7)}ch`,
-                  }}
-                />
-                <button onClick={addTag}>+</button>
-              </label>
-            </div>
-          </div>
+          <TagsDiv
+            currentlyActive={tagList}
+            readOnly={false}
+            onChange={(actives) => setTagList(actives)}
+          />
           <div className="button-div">
             <button onClick={savePost}>SAVE</button>
             <button onClick={saveAndPublish}>SAVE AND PUBLISH</button>

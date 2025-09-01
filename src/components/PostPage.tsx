@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { Post } from "../classes/Post";
 import MDXRenderer from "./MDXRenderer";
 import PostEditor from "./PostEditor";
+import TagsDiv from "./TagsDiv";
 
 export default function PostPage() {
   const postManager = useContext(PostManagerContext);
@@ -20,16 +21,7 @@ export default function PostPage() {
     <>
       <h1>{post.title}</h1>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div>
-          <small>Tags:</small> <br />
-          <div style={{ display: "flex", gap: "5px" }}>
-            {post.tags.map((tag) => (
-              <label key={tag} className="tag-label">
-                {tag}
-              </label>
-            ))}
-          </div>
-        </div>
+        <TagsDiv currentlyActive={post.tags} readOnly={true} />
         <div>
           <small>Create At:</small> <br />
           {post.createdAt.toLocaleDateString()}{" "}
