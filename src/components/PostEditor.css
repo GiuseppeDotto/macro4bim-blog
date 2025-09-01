@@ -1,25 +1,37 @@
 .post-editor {
-  display: flex;
-  gap: 10px;
-  flex-direction: row;
-
   width: min(1200px, 90vw);
   height: min(900px, 90vh);
-}
-.post-editor > div {
-  flex: 1;
-}
-
-.post-editor > div:nth-child(1) {
   display: flex;
   flex-direction: column;
-
-  textarea {
-    resize: none;
-    field-sizing: content;
-  }
+  gap: 15px;
 }
 
-.post-editor > div:nth-child(2) {
+/* TOP DIV */
+.post-editor > div:nth-child(1) {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  overflow: hidden;
+  margin-top: 30px;
+}
+.post-editor > div:nth-child(1) > div {
+  flex: 1;
+  max-height: 100%;
+}
+.mdx-editor {
+  display: flex;
+  flex-direction: column;
+}
+.mdx-editor > textarea {
+  resize: none;
+  field-sizing: content;
+}
+.mdx-preview {
   overflow: auto;
+}
+
+/* BOTTOM DIV */
+.post-editor > div:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
 }
