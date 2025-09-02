@@ -11,9 +11,10 @@ import {
   GoogleAuthProvider,
   GithubAuthProvider,
   updateProfile,
+  signInWithPopup,
 } from "firebase/auth";
 
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -41,18 +42,18 @@ export const signInRegister = async (email: string, pass: string, username: stri
   } catch (error) {}
 };
 
-export const GoogleSignin = async () => {
+export const GoogleSigninWithPopup = async () => {
   const provider = new GoogleAuthProvider();
   provider.addScope("profile");
   provider.addScope("email");
-  signInWithRedirect(auth, provider);
+  await signInWithPopup(auth, provider);
 };
 
-export const GithubSignin = async () => {
+export const GithubSigninWithPopoup = async () => {
   const provider = new GithubAuthProvider();
   provider.addScope("profile");
   provider.addScope("email");
-  signInWithRedirect(auth, provider);
+  await signInWithPopup(auth, provider);
 };
 
 // FIRESTORE
