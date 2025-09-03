@@ -17,6 +17,7 @@ function App() {
   const [postManager, setPostManager] = useState(new PostsManager([]));
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
+
   useEffect(() => {
     const initializePostManager = async () => {
       await postManager.fetchPosts();
@@ -33,7 +34,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  if (loading) return;
+  if (loading) return <div>loading...</div>;
 
   return (
     <>

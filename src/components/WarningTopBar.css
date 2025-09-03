@@ -1,0 +1,18 @@
+.warn-top-bar {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  z-index: 2;
+  translate: 0 -100%;
+  transition: translate 250ms ease-in-out;
+}
+.warn-top-bar.visible {
+  translate: 0;
+}
