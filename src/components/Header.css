@@ -7,7 +7,9 @@
   top: 1rem;
   left: 50%;
   translate: -50%;
-  outline: 1px solid #ddd;
-  box-shadow: 0 0 10px #ddd;
+  /* outline: 1px solid #ddd; */
+  /* box-shadow: 0 0 10px #ddd; */
+  outline: 1px solid #333;
+  box-shadow: 5px 5px 0 #333;
   padding: 10px;
 }

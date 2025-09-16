@@ -25,6 +25,9 @@ export class Post implements IPost {
   published: boolean;
   tags: string[];
 
+  // hooks
+  onCommentAdd = () => {};
+
   constructor(data: IPost, slug: string) {
     this.title = data.title;
     this.content = data.content;
@@ -46,8 +49,9 @@ export class Post implements IPost {
     return this;
   }
 
-  addComment(data: IComment) {
-    this.comments.push(new Comment(data));
+  async addComment(data: IComment) {
+    const newComment = new Comment(data);
+    this.comments.push(newComment);
   }
 
   removeComment(commentId: string) {

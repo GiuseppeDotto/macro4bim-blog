@@ -42,11 +42,13 @@ function App() {
         <UserContext.Provider value={user}>
           <Header />
           <UserSpace />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/post/:slug" element={<PostPage />} />
-          </Routes>
+          <main style={{ width: "min(90vw, 750px)", margin: "auto" }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/post/:slug" element={<PostPage />} />
+            </Routes>
+          </main>
         </UserContext.Provider>
       </PostManagerContext.Provider>
     </>

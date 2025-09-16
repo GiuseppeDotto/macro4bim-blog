@@ -1,0 +1,32 @@
+.new-comment {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 50px;
+}
+.new-comment > button {
+  flex: 0;
+  margin-left: auto;
+}
+.new-comment > textarea {
+  /* width: 100%; */
+  resize: none;
+  field-sizing: content;
+  min-height: 35px;
+  max-height: 75px;
+  outline: none;
+  border-radius: 0;
+}
+.new-comment > button {
+  margin-top: auto;
+}
+
+.comment > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 40px 0 10px 0;
+  * {
+    margin: 0;
+  }
+}
