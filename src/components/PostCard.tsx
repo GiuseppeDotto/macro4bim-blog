@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router";
 import { Post } from "../classes/Post";
+import { useContext } from "react";
+import { UserContext } from "../App";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 export default function PostCard({ post }: { post: Post }) {
+  const user = useContext(UserContext);
   const navigation = useNavigate();
   return (
     <div className="post-card" onClick={() => navigation(`/post/${post.slug}`)}>
@@ -12,6 +16,14 @@ export default function PostCard({ post }: { post: Post }) {
             {tag}
           </label>
         ))}
+      </div>
+      <div>
+        {post.votes.includes(user?.email || "") ? (
+          <BsHeartFill color="red" />
+        ) : (
+          <BsHeart color="red" />
+        )}
+        <sup style={{ marginLeft: "2px" }}>{post.votes.length}</sup>
       </div>
     </div>
   );

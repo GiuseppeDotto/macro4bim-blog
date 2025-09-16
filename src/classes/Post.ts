@@ -11,6 +11,7 @@ export interface IPost {
   comments?: Comment[];
   published?: boolean;
   tags?: string[];
+  votes?: string[];
 }
 
 export class Post implements IPost {
@@ -24,6 +25,7 @@ export class Post implements IPost {
   comments: Comment[];
   published: boolean;
   tags: string[];
+  votes: string[];
 
   // hooks
   onCommentAdd = () => {};
@@ -36,6 +38,7 @@ export class Post implements IPost {
     this.comments = data.comments || [];
     this.published = data.published || false;
     this.tags = data.tags || [];
+    this.votes = data.votes || [];
   }
 
   private convertTimestamp(t: Date | Timestamp | undefined) {
@@ -62,5 +65,11 @@ export class Post implements IPost {
     this.comments = this.comments.map((c) =>
       c.id === commentId ? { ...c, content: newContent, modifiedAt: new Date() } : c
     );
+  }
+
+  votePost(email: string) {
+    this.votes.includes(email)
+      ? (this.votes = this.votes.filter((x) => x !== email))
+      : (this.votes = [...this.votes, email]);
   }
 }
