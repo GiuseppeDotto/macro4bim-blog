@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     const initializePostManager = async () => {
-      await postManager.fetchPosts();
+      // await postManager.fetchPosts();
       setPostManager(postManager);
       setLoading(false);
     };
@@ -42,7 +42,7 @@ function App() {
         <UserContext.Provider value={user}>
           <Header />
           <UserSpace />
-          <main style={{ width: "min(90vw, 750px)", margin: "auto" }}>
+          <main>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/blog" element={<Blog />} />

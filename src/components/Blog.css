@@ -1,17 +1,48 @@
-.post-list {
-  /* display: flex;
-  flex-wrap: wrap; */
+.post-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
 }
 
-.post-card {
-  outline: 1px solid #666;
-  border-radius: 10px;
-  cursor: pointer;
+.new-post-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgb(255, 85, 0);
+  border: none;
+  box-shadow: 5px 5px 0px blue;
 }
 
-.post-card:hover {
-  box-shadow: 0 0 10px #333;
+.new-post-button:hover {
+  box-shadow: 7px 7px 0px blue;
+  text-decoration: underline;
+}
+
+.display-mode {
+  display: flex;
+  gap: 5px;
+  justify-content: right;
+  margin: 15px 0;
+}
+
+.display-mode > button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 1px solid #ccc;
+  color: #ccc;
+}
+.display-mode > button:hover {
+  border: 1px solid #aaa;
+  color: #aaa;
+}
+.display-mode > button.active {
+  border: 1px solid #333;
+  color: #333;
+  text-decoration: underline;
+}
+
+.display-mode > button > svg {
+  translate: 0 2px;
 }

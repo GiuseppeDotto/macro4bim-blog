@@ -1,0 +1,49 @@
+.post-card {
+  outline: 1px solid #ddd;
+  transition: scale 250ms ease-in-out;
+}
+
+.post-card:hover {
+  outline: 1px solid #aaa;
+}
+
+.post-card > div {
+  margin: 10px;
+}
+
+.post-card > div:first-child {
+  margin: 0;
+}
+
+.card-img {
+  min-height: 150px;
+  background-color: #eee;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.card-footer > div:first-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+/* .stats-icon.voted {
+  color: red;
+} */
+
+.stats-icon::after {
+  content: attr(data-count);
+  font-size: 0.7em;
+  position: absolute;
+  line-height: 0.3em;
+  top: 0;
+  left: 110%;
+  text-align: left;
+}

@@ -8,7 +8,6 @@ export default function Header() {
         <Link to={"/"}>Home</Link>
         <Link to={"/blog"}>Blog</Link>
       </div>
-      <div style={{ height: "50px" }} />
     </>
   );
 }

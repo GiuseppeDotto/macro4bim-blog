@@ -1,7 +1,86 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Quicksand:wght@300..700&display=swap");
 
+:root {
+  --color-acqua: #41baae;
+  --color-gold: #dec328;
+  --color-red: #de4928;
+  --color-text: #333;
+}
+
+html {
+  background-color: hsl(0, 0%, 97%);
+}
+#root > main {
+  background-color: white;
+  padding: 20px;
+  margin: auto;
+  width: min(calc(90vw - 40px), 750px);
+}
+
 * {
   font-family: "Quicksand", sans-serif;
+}
+
+/* COLOR DIVS */
+.gold {
+  color: var(--color-gold);
+}
+.acqua {
+  color: var(--color-acqua);
+}
+.red {
+  color: var(--color-red);
+}
+
+/* BUTTONS */
+.btn-primary {
+  background-color: #555;
+  color: white;
+  transition: all 250ms ease-in-out;
+}
+.btn-primary:hover {
+  background-color: #888;
+  translate: 0 -3px;
+}
+
+.btn-alert {
+  color: var(--color-red);
+  outline-color: var(--color-red);
+}
+
+/* TOGGLE */
+.label-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  user-select: none;
+}
+.label-toggle > input {
+  display: none;
+  cursor: pointer;
+}
+.label-toggle > input + div {
+  outline: 1px solid #aaa;
+  width: 30px;
+  height: 16px;
+  border-radius: 100px;
+  position: relative;
+}
+.label-toggle > input + div::after {
+  content: "";
+  position: absolute;
+  display: block;
+  aspect-ratio: 1/1;
+  height: 90%;
+  border-radius: 100px;
+  top: 5%;
+  background-color: #ddd;
+  left: 5%;
+  transition: all 250ms ease-in-out;
+}
+.label-toggle > input:checked + div::after {
+  background-color: #555;
+  left: 50%;
 }
 
 label.tag-label {
@@ -37,26 +116,6 @@ label.tag-label.selectable:hover {
 label.tag-label.active {
   background-color: #eee;
   color: #333;
-}
-
-.close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.btn-primary {
-  background-color: #444;
-  color: white;
-  border-radius: 0;
-  outline: 1px solid black;
-  border: none;
-  transition: all 250ms ease-in-out;
-  cursor: pointer;
-}
-.btn-primary:hover {
-  background-color: #888;
-  translate: 0 -3px;
 }
 
 .input-title {

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ObjectList from "./ObjectList";
 
 interface IToDo {
   title: string;
@@ -44,6 +45,8 @@ export default function Home() {
           { title: "link to Google Analytics", done: false },
         ]}
       />
+      <hr />
+      <ObjectList />
     </>
   );
 }
