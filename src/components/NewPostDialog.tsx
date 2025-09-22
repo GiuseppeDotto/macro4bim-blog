@@ -17,11 +17,11 @@ export default function NewPostDialog({ open, onClose }: { open: boolean; onClos
   }, [open]);
 
   const savePost = () => {
-    postManager.addPost({ title, content }, false, tagList);
+    postManager.addPost({ title, content });
     onClose();
   };
   const saveAndPublish = () => {
-    postManager.addPost({ title, content }, true, tagList);
+    postManager.addPost({ title, content });
     onClose();
   };
 
