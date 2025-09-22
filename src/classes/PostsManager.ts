@@ -5,6 +5,7 @@ import { IPost, Post } from "./Post";
 export class PostsManager {
   posts: Post[];
   tags: string[];
+  isDev = window.location.origin.includes("http://localhost:");
 
   constructor(posts: Post[]) {
     this.posts = posts;
@@ -27,7 +28,7 @@ export class PostsManager {
     const newPost = new Post(data, data.slug || slug);
     this.posts.push(newPost);
     this.tags = this.tagsFromPosts();
-    this.writeDB(newPost);
+    this.isDev ? null : this.writeDB(newPost);
     return newPost;
   }
 
@@ -40,7 +41,7 @@ export class PostsManager {
       );
       return;
     }
-    await setDoc(docRef, { ...post });
+    setDoc(docRef, { ...post });
   }
 
   publishPost(slug: string) {
@@ -61,13 +62,17 @@ export class PostsManager {
 
   updatePost(updatedPost: Post) {
     this.posts = this.posts.map((post) => (post.slug === updatedPost.slug ? updatedPost : post));
+    if (this.isDev) return;
     updateDoc(doc(db, "posts", updatedPost.slug), { ...updatedPost });
   }
 
   async fetchPosts() {
+    if (this.isDev) return;
+
     (await getDocs(collection(db, "posts"))).docs.map((doc) => {
       const data = doc.data() as Post;
       const post = new Post(data, data.slug);
+
       this.posts.map((p) => p.slug).includes(post.slug)
         ? null
         : (this.posts = [...this.posts, post]);
