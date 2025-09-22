@@ -5,6 +5,7 @@ import { PostManagerContext, UserContext } from "../App";
 import PostCard from "./PostCard";
 import { BsPencilFill } from "react-icons/bs";
 import { RiGalleryView, RiListCheck2 } from "react-icons/ri";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 export default function Blog() {
   const [newPostDialog, setNewPostDialog] = useState(false);
@@ -19,7 +20,10 @@ export default function Blog() {
       <p>Below is the list of all the post sorted by publish date.</p>
 
       <div className="display-mode">
-        <input type="text" placeholder="search by name..." />
+        <div style={{ display: "flex", alignItems: "center", gap: "5px", marginRight: "auto" }}>
+          <FaMagnifyingGlass color="#aaa" />
+          <input type="text" placeholder="search by name..." />
+        </div>
         <button
           className={displayMode === "tiles" ? "active" : ""}
           onClick={() => setDisplayMode("tiles")}

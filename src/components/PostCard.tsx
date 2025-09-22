@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { Post } from "../classes/Post";
 import { useContext, useState } from "react";
 import { UserContext } from "../App";
@@ -36,7 +36,7 @@ export default function PostCard({ post }: { post: Post }) {
             {tagList}
           </small>
         </div>
-        <div>
+        <div style={{ marginRight: "10px" }}>
           <div
             className={`stats-icon ${votes.includes(userEmail) ? "red" : ""}`}
             data-count={votes.length}

@@ -30,13 +30,10 @@
 }
 
 .stats-icon {
+  display: block;
+  width: fit-content;
   position: relative;
-  cursor: pointer;
 }
-
-/* .stats-icon.voted {
-  color: red;
-} */
 
 .stats-icon::after {
   content: attr(data-count);
