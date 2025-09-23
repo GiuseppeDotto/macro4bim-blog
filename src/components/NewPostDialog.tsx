@@ -1,6 +1,6 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MDXRenderer from "./MDXRenderer";
-import { PostManagerContext } from "../App";
+import { usePostsManager } from "../App";
 import "./NewPostDialog.css";
 import CloseButton from "./CloseButton";
 import TagsDiv from "./TagsDiv";
@@ -9,7 +9,7 @@ export default function NewPostDialog({ open, onClose }: { open: boolean; onClos
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const postManager = useContext(PostManagerContext);
+  const postManager = usePostsManager();
   const [tagList, setTagList] = useState<string[]>([]);
 
   useEffect(() => {

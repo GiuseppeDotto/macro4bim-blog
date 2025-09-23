@@ -12,10 +12,17 @@ export default function TagsDiv({ currentlyActive, readOnly, onChange }: Props) 
   const postManager = useContext(PostManagerContext);
   const [tags, setTags] = useState<string[]>([...postManager.tags]);
   const [actives, setActives] = useState<string[]>(currentlyActive);
+  const [newTag, setNewTag] = useState("");
 
   useEffect(() => {
     onChange ? onChange(actives) : null;
   }, [tags, actives]);
+
+  const addNewTag = () => {
+    setTags([...tags, newTag]);
+    setActives([...actives, newTag]);
+    setNewTag("");
+  };
 
   const addToActive = (e: MouseEvent<HTMLSpanElement>) => {
     const span = e.target as HTMLSpanElement;
@@ -26,27 +33,6 @@ export default function TagsDiv({ currentlyActive, readOnly, onChange }: Props) 
     actives.includes(tag)
       ? setActives(actives.filter((t) => t !== tag))
       : setActives([...actives, tag]);
-  };
-
-  const NewTag = () => {
-    const [newTag, setNewTag] = useState("");
-
-    const addNewTag = () => {
-      if (tags.includes(newTag)) return;
-      setTags([...tags, newTag]);
-    };
-
-    return (
-      <span className="span-tag">
-        <input
-          type="text"
-          placeholder="new-tag"
-          value={newTag}
-          onChange={(e) => setNewTag(e.target.value)}
-        />
-        <button onClick={addNewTag}>+</button>
-      </span>
-    );
   };
 
   if (readOnly) {
@@ -77,7 +63,16 @@ export default function TagsDiv({ currentlyActive, readOnly, onChange }: Props) 
             {tag}
           </span>
         ))}
-        <NewTag />
+        {/* NEW TAG */}
+        <span className="span-tag">
+          <input
+            type="text"
+            placeholder="new-tag"
+            value={newTag}
+            onChange={(e) => setNewTag(e.target.value)}
+          />
+          <button onClick={addNewTag}>+</button>
+        </span>
       </div>
     </div>
   );

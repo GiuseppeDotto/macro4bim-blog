@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Post } from "../classes/Post";
 import MDXRenderer from "./MDXRenderer";
 import "./PostEditor.css";
-import { PostManagerContext } from "../App";
+import { usePostsManager } from "../App";
 import TagsDiv from "./TagsDiv";
 import Toggle from "./Toggle";
 
@@ -12,7 +12,7 @@ export default function PostEditor({ post, onChange }: { post?: Post; onChange: 
   const [tags, setTags] = useState(post?.tags || []);
   const [published, setPublished] = useState(post?.published || false);
   const [createdAt, setCreatedAt] = useState(post?.createdAt || new Date());
-  const postManager = useContext(PostManagerContext);
+  const postManager = usePostsManager();
 
   const updatePost = () => {
     if (!post) return;
@@ -28,7 +28,7 @@ export default function PostEditor({ post, onChange }: { post?: Post; onChange: 
   return (
     <>
       <div className="post-editor">
-        <div>
+        <div className="post-editor-main-canvas">
           <div className="mdx-editor">
             <input
               type="text"
@@ -43,7 +43,7 @@ export default function PostEditor({ post, onChange }: { post?: Post; onChange: 
           </div>
         </div>
 
-        <div>
+        <div className="post-editor-footer">
           <TagsDiv currentlyActive={tags} readOnly={false} onChange={setTags} />
           <div style={{ display: "flex", alignItems: "flex-end", gap: "20px" }}>
             <div>

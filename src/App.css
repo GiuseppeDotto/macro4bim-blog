@@ -83,6 +83,7 @@ html {
   left: 50%;
 }
 
+/* LABEL TAG */
 label.tag-label {
   outline: 1px solid #ccc;
   color: #777;
@@ -108,6 +109,7 @@ label.tag-label.selectable {
     translate: 5px;
   }
 }
+
 label.tag-label.selectable:hover {
   background-color: #eee;
   color: #777;
@@ -118,6 +120,7 @@ label.tag-label.active {
   color: #333;
 }
 
+/* INPUT TYPES */
 .input-title {
   font-size: 1.5em;
 }

@@ -5,9 +5,12 @@
 }
 
 .span-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   outline: 1px solid #ccc;
   border-radius: 50vh;
-  padding: 0 5px;
+  padding: 0 7px;
   color: #777;
   user-select: none;
 }
@@ -30,6 +33,5 @@
 
 .span-tag > button {
   border-radius: 50vh;
-  border: 1px solid #ccc;
   translate: 5px;
 }

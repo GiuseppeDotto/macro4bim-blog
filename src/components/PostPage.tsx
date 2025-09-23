@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { PostManagerContext, UserContext } from "../App";
+import { PostManagerContext, usePostsManager, UserContext } from "../App";
 import { useParams } from "react-router";
 import { Post } from "../classes/Post";
 import MDXRenderer from "./MDXRenderer";
@@ -10,7 +10,7 @@ import "./PostPage.css";
 import { Comment } from "../classes/Comment";
 
 export default function PostPage() {
-  const postManager = useContext(PostManagerContext);
+  const postManager = usePostsManager();
   const user = useContext(UserContext);
   const { slug } = useParams();
   const [post, setPost] = useState<Post | undefined>();
