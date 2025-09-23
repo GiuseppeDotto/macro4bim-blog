@@ -8,20 +8,20 @@ import TagsDiv from "./TagsDiv";
 export default function NewPostDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const postManager = usePostsManager();
-  const [tagList, setTagList] = useState<string[]>([]);
 
   useEffect(() => {
     open ? dialogRef.current?.showModal() : dialogRef.current?.close();
   }, [open]);
 
   const savePost = () => {
-    postManager.addPost({ title, content });
+    postManager.addPost({ title, content, tags });
     onClose();
   };
   const saveAndPublish = () => {
-    postManager.addPost({ title, content });
+    postManager.addPost({ title, content, tags, published: true });
     onClose();
   };
 
@@ -56,9 +56,9 @@ export default function NewPostDialog({ open, onClose }: { open: boolean; onClos
 
         <div className="new-post-last-row">
           <TagsDiv
-            currentlyActive={tagList}
+            currentlyActive={tags}
             readOnly={false}
-            onChange={(actives) => setTagList(actives)}
+            onChange={(actives) => setTags(actives)}
           />
           <div className="button-div">
             <button onClick={savePost}>SAVE</button>

@@ -1,5 +1,5 @@
-import { MouseEvent, useContext, useEffect, useState } from "react";
-import { PostManagerContext } from "../App";
+import { MouseEvent, useEffect, useState } from "react";
+import { usePostsManager } from "../App";
 import "./TagDiv.css";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function TagsDiv({ currentlyActive, readOnly, onChange }: Props) {
-  const postManager = useContext(PostManagerContext);
+  const postManager = usePostsManager();
   const [tags, setTags] = useState<string[]>([...postManager.tags]);
   const [actives, setActives] = useState<string[]>(currentlyActive);
   const [newTag, setNewTag] = useState("");

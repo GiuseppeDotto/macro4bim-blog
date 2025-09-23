@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { PostManagerContext, usePostsManager, UserContext } from "../App";
+import { usePostsManager, UserContext } from "../App";
 import { useParams } from "react-router";
 import { Post } from "../classes/Post";
 import MDXRenderer from "./MDXRenderer";
@@ -22,6 +22,7 @@ export default function PostPage() {
     const dialog = dialogEditRef.current;
     if (!dialog) return;
     dialog.open ? dialog.close() : dialog.showModal();
+    setPost(postManager.postBySlug(slug || ""));
   };
 
   useEffect(() => {

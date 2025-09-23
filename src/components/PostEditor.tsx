@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Post } from "../classes/Post";
 import MDXRenderer from "./MDXRenderer";
 import "./PostEditor.css";
@@ -7,12 +7,16 @@ import TagsDiv from "./TagsDiv";
 import Toggle from "./Toggle";
 
 export default function PostEditor({ post, onChange }: { post?: Post; onChange: () => void }) {
-  const [title, setTitle] = useState(post?.title || "");
-  const [content, setContent] = useState(post?.content || "");
-  const [tags, setTags] = useState(post?.tags || []);
-  const [published, setPublished] = useState(post?.published || false);
-  const [createdAt, setCreatedAt] = useState(post?.createdAt || new Date());
+  const [title, setTitle] = useState(post ? post.title : "");
+  const [content, setContent] = useState(post ? post.content : "");
+  const [tags, setTags] = useState(post ? [...post.tags] : []);
+  const [published, setPublished] = useState(post ? post.published : false);
+  const [createdAt, setCreatedAt] = useState(post ? post.createdAt : new Date());
   const postManager = usePostsManager();
+
+  useEffect(() => {
+    console.log(postManager);
+  }, []);
 
   const updatePost = () => {
     if (!post) return;

@@ -4,12 +4,12 @@ import { IPost, Post } from "./Post";
 
 export class PostsManager {
   posts: Post[];
-  tags: string[];
+  tags: string[] = [];
   isDev = window.location.origin.includes("http://localhost:");
 
   constructor(posts: Post[]) {
     this.posts = posts;
-    this.tags = this.tagsFromPosts();
+    this.updateTagList();
   }
 
   postBySlug(slug: string) {
@@ -27,7 +27,7 @@ export class PostsManager {
     }
     const newPost = new Post(data, data.slug || slug);
     this.posts.push(newPost);
-    this.tags = this.tagsFromPosts();
+    this.updateTagList();
     this.isDev ? null : this.writeDB(newPost);
     return newPost;
   }
@@ -50,11 +50,11 @@ export class PostsManager {
 
   removePost(slug: string) {
     this.posts = this.posts.filter((p) => p.slug !== slug);
-    this.tags = this.tagsFromPosts();
+    this.updateTagList();
   }
 
-  tagsFromPosts() {
-    return this.posts.reduce((acc: string[], post) => {
+  private updateTagList() {
+    this.tags = this.posts.reduce((acc: string[], post) => {
       post.tags.forEach((tag) => (acc.includes(tag) ? null : acc.push(tag)));
       return acc;
     }, []);
@@ -62,6 +62,7 @@ export class PostsManager {
 
   updatePost(updatedPost: Post) {
     this.posts = this.posts.map((post) => (post.slug === updatedPost.slug ? updatedPost : post));
+    this.updateTagList();
     if (this.isDev) return;
     updateDoc(doc(db, "posts", updatedPost.slug), { ...updatedPost });
   }
