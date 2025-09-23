@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Post } from "../classes/Post";
 import MDXRenderer from "./MDXRenderer";
 import "./PostEditor.css";
@@ -13,10 +13,6 @@ export default function PostEditor({ post, onChange }: { post?: Post; onChange: 
   const [published, setPublished] = useState(post ? post.published : false);
   const [createdAt, setCreatedAt] = useState(post ? post.createdAt : new Date());
   const postManager = usePostsManager();
-
-  useEffect(() => {
-    console.log(postManager);
-  }, []);
 
   const updatePost = () => {
     if (!post) return;

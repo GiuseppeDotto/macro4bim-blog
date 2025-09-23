@@ -6,6 +6,8 @@ import PostCard from "./PostCard";
 import { BsPencilFill } from "react-icons/bs";
 import { RiGalleryView, RiListCheck2 } from "react-icons/ri";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { Link } from "react-router";
+import Heart from "./Heart";
 
 export default function Blog() {
   const [newPostDialog, setNewPostDialog] = useState(false);
@@ -38,11 +40,39 @@ export default function Blog() {
         </button>
       </div>
 
-      <div className="post-gallery">
-        {postManager.posts.map((post) => (
-          <PostCard post={post} key={post.slug} />
-        ))}
-      </div>
+      {displayMode === "tiles" ? (
+        <>
+          <div className="post-gallery">
+            {postManager.posts.map((post) => (
+              <PostCard post={post} key={post.slug} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <div>
+            {postManager.posts.map((post) => {
+              return (
+                <div className="post-row-card">
+                  <div>
+                    <Link to={`/post/${post.slug}`}>
+                      <h3>{post.title}</h3>
+                    </Link>
+                    <div>{post.content.slice(0, 100) + " (...)"}</div>
+                    <div>
+                      <small>{post.tags.join(" - ")}</small>
+                    </div>
+                  </div>
+                  <div>
+                    <small>{post.createdAt.toLocaleDateString()}</small>
+                    <Heart post={post} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
 
       {user?.email === "macro4bim@gmail.com" ? (
         <>

@@ -1,21 +1,13 @@
 import { Link } from "react-router";
 import { Post } from "../classes/Post";
-import { useContext, useState } from "react";
-import { UserContext } from "../App";
-import { BsEye, BsHeart, BsHeartFill } from "react-icons/bs";
+import { useState } from "react";
+import { BsEye } from "react-icons/bs";
 import "./PostCard.css";
+import Heart from "./Heart";
 
 export default function PostCard({ post }: { post: Post }) {
-  const user = useContext(UserContext);
-  const userEmail = user?.email || "none";
   const [tagList] = useState(post.tags.join(" • "));
-  const [votes, setVotes] = useState([...post.votes]);
   const [views] = useState(0);
-
-  const vote = () => {
-    post.votePost(userEmail);
-    setVotes([...post.votes]);
-  };
 
   return (
     <div className="post-card">
@@ -37,13 +29,7 @@ export default function PostCard({ post }: { post: Post }) {
           </small>
         </div>
         <div style={{ marginRight: "10px", display: "flex", gap: "15px" }}>
-          <div
-            className={`stats-icon ${votes.includes(userEmail) ? "red" : ""}`}
-            data-count={votes.length}
-            onClick={vote}
-          >
-            {votes.includes(userEmail) ? <BsHeartFill /> : <BsHeart />}
-          </div>
+          <Heart post={post} />
           <div className="stats-icon" data-count={views}>
             <BsEye />
           </div>

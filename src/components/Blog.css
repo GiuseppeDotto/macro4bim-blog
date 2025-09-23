@@ -45,3 +45,21 @@
 .display-mode > button > svg {
   translate: 0 2px;
 }
+
+.post-row-card {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  * {
+    margin: 0;
+  }
+  small {
+    color: #ccc;
+  }
+}
+.post-row-card > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 5px;
+}
