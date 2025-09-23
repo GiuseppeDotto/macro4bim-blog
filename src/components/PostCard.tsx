@@ -36,7 +36,7 @@ export default function PostCard({ post }: { post: Post }) {
             {tagList}
           </small>
         </div>
-        <div style={{ marginRight: "10px" }}>
+        <div style={{ marginRight: "10px", display: "flex", gap: "15px" }}>
           <div
             className={`stats-icon ${votes.includes(userEmail) ? "red" : ""}`}
             data-count={votes.length}

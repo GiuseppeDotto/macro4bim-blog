@@ -72,7 +72,7 @@ export class PostsManager {
   async fetchPosts() {
     if (this.isDev) {
       Array.from({ length: 5 }, (_, i) => {
-        const title = `Mock Post ${i + 1}`;
+        const title = `Mock Post ${i}`;
         const content = `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Quia quas odit cumque suscipit veniam, laborum reiciendis ad ratione harum 
         perspiciatis laudantium veritatis asperiores inventore tempora? Voluptate harum 
@@ -81,6 +81,7 @@ export class PostsManager {
         similique quas quibusdam aspernatur necessitatibus excepturi natus aliquid dolores vitae 
         totam magni at tempore error, ipsam soluta. Iusto, voluptate dolore dicta animi`;
         const post = new Post({ title, content }, `mock-post-${i}`);
+        if (this.posts.length == 5) return;
         this.posts = [...this.posts, post];
       });
       return;

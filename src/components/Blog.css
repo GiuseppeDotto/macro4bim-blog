@@ -31,15 +31,13 @@
   align-items: center;
   gap: 5px;
   background: none;
-  border: 1px solid #ccc;
   color: #ccc;
 }
 .display-mode > button:hover {
-  border: 1px solid #aaa;
   color: #aaa;
 }
 .display-mode > button.active {
-  border: 1px solid #333;
+  outline: 1px solid #666;
   color: #333;
   text-decoration: underline;
 }
