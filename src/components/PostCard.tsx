@@ -1,13 +1,12 @@
 import { Link } from "react-router";
 import { Post } from "../classes/Post";
 import { useState } from "react";
-import { BsEye } from "react-icons/bs";
 import "./PostCard.css";
 import Heart from "./Heart";
+import Eye from "./Eye";
 
 export default function PostCard({ post }: { post: Post }) {
   const [tagList] = useState(post.tags.join(" • "));
-  const [views] = useState(0);
 
   return (
     <div className="post-card">
@@ -28,11 +27,9 @@ export default function PostCard({ post }: { post: Post }) {
             {tagList}
           </small>
         </div>
-        <div style={{ marginRight: "10px", display: "flex", gap: "15px" }}>
+        <div style={{ marginRight: "10px", display: "flex", gap: "5px" }}>
           <Heart post={post} />
-          <div className="stats-icon" data-count={views}>
-            <BsEye />
-          </div>
+          <Eye post={post} />
         </div>
       </div>
     </div>

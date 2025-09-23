@@ -8,6 +8,8 @@ import TagsDiv from "./TagsDiv";
 import CloseButton from "./CloseButton";
 import "./PostPage.css";
 import { Comment } from "../classes/Comment";
+import Heart from "./Heart";
+import Eye from "./Eye";
 
 export default function PostPage() {
   const postManager = usePostsManager();
@@ -15,8 +17,8 @@ export default function PostPage() {
   const { slug } = useParams();
   const [post, setPost] = useState<Post | undefined>();
   const dialogEditRef = useRef<HTMLDialogElement>(null);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [comments, setComments] = useState<Comment[]>([]);
+  const [newComment, setNewComment] = useState("");
 
   const triggerDialog = () => {
     const dialog = dialogEditRef.current;
@@ -30,13 +32,13 @@ export default function PostPage() {
     if (!postURL) return;
     setPost(postURL);
     setComments([...postURL.comments]);
-  }, [slug, postManager.posts]);
+    postURL.visited();
+  }, [slug]);
 
   const addComment = () => {
-    const content = textareaRef.current?.value;
     const author = user?.displayName;
-    if (!content || !author || !post) return;
-    post.addComment({ author, content }).then(() => {
+    if (!author || !post) return;
+    post.addComment({ author, content: newComment }).then(() => {
       setComments([...post.comments]);
     });
   };
@@ -46,7 +48,7 @@ export default function PostPage() {
   return (
     <>
       <h1>{post.title}</h1>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div className="post-page-header">
         <TagsDiv currentlyActive={post.tags} readOnly={true} />
         <div>
           <small>Create At:</small> <br />
@@ -56,11 +58,11 @@ export default function PostPage() {
       <hr />
       <MDXRenderer content={post.content} />
       <hr />
+      <div className="post-page-footer">
+        <Heart post={post} />
+        <Eye post={post} />
+      </div>
 
-      <dialog ref={dialogEditRef}>
-        <PostEditor post={post} onChange={triggerDialog} />
-        <CloseButton onClick={triggerDialog} />
-      </dialog>
       <div className="comment-section">
         <h3>Comments</h3>
         <div className="comment-list">
@@ -76,7 +78,11 @@ export default function PostPage() {
             );
           })}
           <div className="new-comment">
-            <textarea ref={textareaRef} placeholder="write you comment here..." />
+            <textarea
+              placeholder="write you comment here..."
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
             <button onClick={addComment} className="btn-primary">
               Submit
             </button>
@@ -85,6 +91,10 @@ export default function PostPage() {
       </div>
 
       {/* RESTRICTED SPACE */}
+      <dialog ref={dialogEditRef}>
+        <PostEditor post={post} onChange={triggerDialog} />
+        <CloseButton onClick={triggerDialog} />
+      </dialog>
       <button
         onClick={triggerDialog}
         style={{

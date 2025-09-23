@@ -53,14 +53,14 @@ export default function Blog() {
           <div>
             {postManager.posts.map((post) => {
               return (
-                <div className="post-row-card">
+                <div className="post-row-card" key={post.slug}>
                   <div>
                     <Link to={`/post/${post.slug}`}>
                       <h3>{post.title}</h3>
                     </Link>
                     <div>{post.content.slice(0, 100) + " (...)"}</div>
                     <div>
-                      <small>{post.tags.join(" - ")}</small>
+                      <small>{post.tags.join(" • ")}</small>
                     </div>
                   </div>
                   <div>
