@@ -66,8 +66,25 @@ export class PostsManager {
     updateDoc(doc(db, "posts", updatedPost.slug), { ...updatedPost });
   }
 
+  /**Fetch all the post saved in the DB.
+   * In dev mode (localhost) it creates 5 mock posts instead of fetching from the DB.
+   */
   async fetchPosts() {
-    if (this.isDev) return;
+    if (this.isDev) {
+      Array.from({ length: 5 }, (_, i) => {
+        const title = `Mock Post ${i + 1}`;
+        const content = `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Quia quas odit cumque suscipit veniam, laborum reiciendis ad ratione harum 
+        perspiciatis laudantium veritatis asperiores inventore tempora? Voluptate harum 
+        explicabo expedita aliquam in dolor ratione saepe dolore? Placeat, laudantium. 
+        Ad libero obcaecati ut quidem consectetur incidunt iste placeat accusamus atque iure 
+        similique quas quibusdam aspernatur necessitatibus excepturi natus aliquid dolores vitae 
+        totam magni at tempore error, ipsam soluta. Iusto, voluptate dolore dicta animi`;
+        const post = new Post({ title, content }, `mock-post-${i}`);
+        this.posts = [...this.posts, post];
+      });
+      return;
+    }
 
     (await getDocs(collection(db, "posts"))).docs.map((doc) => {
       const data = doc.data() as Post;

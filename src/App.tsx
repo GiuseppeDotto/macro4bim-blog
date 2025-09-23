@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     const initializePostManager = async () => {
-      // await postManager.fetchPosts();
+      await postManager.fetchPosts();
       setPostManager(postManager);
       setLoading(false);
     };
