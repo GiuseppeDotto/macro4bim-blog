@@ -20,7 +20,11 @@ export default function PostEditor({ post, onChange }: { post?: Post; onChange: 
 
   const updatePost = () => {
     if (!post) return;
-    postManager.updatePost({ ...post, title, content, tags, published, createdAt } as Post);
+    const updatedPost = new Post(
+      { ...post, title, content, tags, published, createdAt },
+      post.slug
+    );
+    postManager.updatePost(updatedPost);
     onChange();
   };
 
